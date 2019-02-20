@@ -1,0 +1,48 @@
+/*
+ * Victoria Condos
+ */
+import java.util.Scanner;
+public class DayScheduleFrontEnd  {
+	public static Scanner keyboard=new Scanner(System.in);
+	public static void main (String[] args)
+	{
+		DaySchedule todaysSchedule= new DaySchedule();//one instance of DaySchedule
+		boolean quit=false;
+		System.out.println("Welcome to the day planner system");
+		while(quit==false)
+		{
+			System.out.println("Would you like to "
+					+"\n 1. Add an Activity"
+					+"\n 2. Remove an Activity"
+					+"\n 9. Quit");
+			int userAnswer=keyboard.nextInt();
+			if(userAnswer==1)//add activity
+			{
+				keyboard.nextLine();
+				System.out.println("Enter the activity's name");
+				String activityName=keyboard.nextLine();
+				System.out.println("Enter its start hour in military time");
+				int activityStartHour=keyboard.nextInt();
+				System.out.println("Enter its end hour in military time");
+				int activityEndHour=keyboard.nextInt();
+				Activity thisActivity=new Activity(activityName, activityStartHour,activityEndHour);
+				DaySchedule.addActivity(thisActivity);
+			}
+			else if(userAnswer==2)//remove activity
+			{
+				keyboard.nextLine();
+				System.out.println("Enter the activity's name");
+				String activityName=keyboard.nextLine();
+				DaySchedule.removeActivity(activityName);
+			}
+			else if(userAnswer==9)//quit
+			{
+				System.out.println("Goodbye!");
+				quit=true;
+			}
+			DaySchedule.sortActivitiesByStart();
+			DaySchedule.printActivities();//prints current schedule
+		}
+		
+	}
+}
