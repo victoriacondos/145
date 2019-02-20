@@ -1,0 +1,50 @@
+/*
+* Victoria Condos
+*/
+public class Animal {
+	private String name="none";
+	private double weight=0.0;
+	public Animal()//default
+	{
+		
+	}
+	public Animal(String aName, double aWeight)//parameterized 
+	{
+		this.setName(aName);
+		this.setWeight(aWeight);
+	}
+	//accessors
+	public String getName()
+	{
+		return this.name;
+	}
+	public double getWeight()
+	{
+		return this.weight;
+	}
+	//mutators
+	public void setName(String aName)
+	{
+		this.name=aName;
+	}
+	public void setWeight(double aWeight)
+	{
+		if(aWeight>0)
+		{
+			this.weight=aWeight;
+		}
+		else
+		{
+			System.out.println("Invalid Weight");
+		}
+	}
+	//methods
+	public String toString()
+	{
+		return "Name: "+ this.name +"\n Weight: " +this.weight;
+	}
+	public boolean equals(Animal anAnimal)
+	{
+		return anAnimal!=null && this.name.equals(anAnimal.getName())&& this.weight==anAnimal.getWeight();
+	}
+}
