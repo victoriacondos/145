@@ -1,0 +1,37 @@
+/*
+ * Victoria Condos
+ */
+import java.util.Scanner;
+public class Exam01
+{
+	public static void main(String[] args) 
+	{
+		
+		Scanner keyboard=new Scanner(System.in);//creates scanner
+		System.out.println("Welcome to the bouncing ball program.");
+		System.out.println("Please enter the initial velocity.");//prompts user
+		double iVelocity=keyboard.nextDouble();
+		double currentVelocity=iVelocity;
+		int bounceNum=0;//create variables to be used in while loop
+		int time=0;
+		double height=0.0;
+		while(bounceNum<5)//goes from 0-4 for 5 bounces
+		{
+			if(height<0)
+			{
+				System.out.println("BOUNCE!");//outputs bounce when ball would be hitting the ground
+				currentVelocity*=-0.5;//changes velocity speed and direction to simulate bounce
+				height*=-.5;//changes height direction to simulate bounce
+				bounceNum++;//increases bounce counter so it will only bounce 5 times
+			}
+			if(bounceNum<5)//makes sure that it doesn't print height and time after last bounce
+			{
+			System.out.println("Time: "+time +" Height: "+ height);//outputs current time and height
+			height=height+currentVelocity;
+			currentVelocity-=32;//changes currentVelocity to simulate gravity's affect
+			time++;//increases seconds by one
+			}
+		}
+	}
+
+}
