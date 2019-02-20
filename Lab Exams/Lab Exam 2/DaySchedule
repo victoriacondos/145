@@ -1,0 +1,105 @@
+/*
+ * Victoria Condos
+ */
+public class DaySchedule {
+	
+	private static final int MAX_NUM=25;
+	private static Activity [] activities=new Activity[MAX_NUM];
+	public DaySchedule()//default constructor
+	{
+		
+	}
+	public DaySchedule(Activity [] anActivities)
+	{
+		this.setActivities(anActivities);
+	}
+	//accessor
+	public Activity [] getActivities()
+	{
+		return this.activities;
+	}
+	//mutator
+	public void setActivities(Activity [] anActivities)
+	{
+		this.activities= anActivities;
+	}
+	//other methods
+	public static void addActivity(Activity anActivity)//
+	{
+		
+			for(int j=0;j<activities.length;j++)//checks for conflicting times
+			{
+				if(activities[j]!=null)
+				{
+					if(activities[j].getStartHour()<=anActivity.getStartHour() && activities[j].getEndHour()>=anActivity.getEndHour())//activity anActivity is within activities[j]
+					{
+						System.out.println("Overlap. Activity not Added");
+						return;
+					}
+					else if(anActivity.getStartHour()<= activities[j].getStartHour()&& anActivity.getEndHour()>=activities[j].getEndHour())//activities[j] is within anActivity
+					{
+						System.out.println("Overlap. Activity not Added");
+						return;
+					}
+					else if(activities[j].getStartHour()<=anActivity.getStartHour() && activities[j].getEndHour()>anActivity.getStartHour())//anActivity starts before activities[j] ends
+					{
+						System.out.println("Overlap. Activity not Added");
+						return;
+					}
+					else if(anActivity.getStartHour()<= activities[j].getStartHour()&& anActivity.getEndHour()>activities[j].getStartHour())//activities[j] starts before anActivity ends
+					{
+						System.out.println("Overlap. Activity not Added");
+						return;
+					}
+				}
+			}
+			//if reaches here, no conflicts
+			for(int i=0; i<activities.length; i++)
+			{
+				if(activities[i]==null)//adds activity to next open spot
+				{
+					activities[i]=anActivity;
+					return;
+				}
+				
+			}
+	}
+	public static void removeActivity(String aName)
+	{
+		for(int i=0; i<activities.length;i++) //removes activity with same name
+		{
+			if(activities[i] != null && activities[i].getName().equals(aName))
+			{
+				activities[i]=null;
+				return;
+			}
+		}
+		System.out.println("The activity was not found");//if reaches here, doesn't exist
+	}
+	public static void printActivities()
+	{
+		for(int i=0;i<activities.length;i++)
+		{
+			if(activities[i]==null)
+			continue;
+			System.out.println(i+ ": " +activities[i]);
+			System.out.println();
+		}
+	}
+	public static void sortActivitiesByStart()//sort activities with bubble sort comparing start times
+	{
+		
+			for(int i=0;i<activities.length-1;i++)
+			{
+				if(activities[i]!=null&&activities[i+1]!=null)
+				{
+					if(activities[i].getStartHour()>activities[i+1].getStartHour())//swap if later start time is in lower index
+					{
+						Activity temp= activities[i];
+						activities[i]=activities[i+1];
+						activities[i+1]=temp;
+					}
+				}
+			}
+	}
+}
