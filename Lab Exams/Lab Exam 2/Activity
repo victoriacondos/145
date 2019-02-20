@@ -1,0 +1,64 @@
+/*
+ * Victoria Condos
+ */
+public class Activity {
+	//instance variables
+	private String name="none";
+	private int startHour=0;
+	private int endHour=0;
+	public Activity()//default constructor
+	{
+		
+	}
+	public Activity(String aName, int aStartHour, int anEndHour)//parameterized constructor
+	{
+		this.setName(aName);
+		this.setStartHour(aStartHour);
+		this.setEndHour(anEndHour);
+	}
+	//accessors
+	public String getName()
+	{
+		return this.name;
+	}
+	public int getStartHour()
+	{
+		return this.startHour;
+	}
+	public int getEndHour()
+	{
+		return this.endHour;
+	}
+	//mutators
+	public void setName(String aName)
+	{
+		this.name=aName;//no check required
+	}
+	public void setStartHour(int aStartHour)
+	{
+		if(aStartHour>=0 && aStartHour<=23)// aStartHour can be from 0-23
+		{
+			this.startHour=aStartHour;
+		}
+		else
+		{
+			System.out.println("Invalid Start Hour");
+		}
+	}
+	public void setEndHour(int anEndHour)
+	{
+		if(anEndHour>=0 && anEndHour<=23)//anEndHour can be from 0-23
+		{
+			this.endHour=anEndHour;
+		}
+		else
+		{
+			System.out.println("Invalid End Hour");
+		}
+	}
+	//methods
+	public String toString()
+	{
+		return "Name: "+this.name + " Start Hour: "+this.startHour+ " End Hour: "+ this.endHour;
+	}
+}
